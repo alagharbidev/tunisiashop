@@ -1,0 +1,23 @@
+version: "3"
+services:
+  frontend:
+    build: ./Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    build: ./Dockerfile.backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
